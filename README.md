@@ -46,4 +46,34 @@ El método de listar alumnos tiene como parámetros:
 - success : Confirma que se guardó correctamente el nombre.
 > Para poder utilizar el método POST, se debe utilizar un navegador libre de cors.
 
+# Parte 2
+Se utilizó SOAPUI para poder obtener los XML necesarios para poder realizar la acción de crear y listar los alumnos de la [API](https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl)
+[!Screenshot](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea2/Practica2/img/SoapUI.PNG)
+Se realiza un POST con los XML necesarios para cada acción, en los POST también se envían en el header las credenciales para poder acceder por medio de autenticación básica:
 
+```
+headers:{'Authorization' : 'Basic ' + user + ':' + pass},
+```
+Y en la data cada XML respectivo
+### Listar alumnos
+```
+data : '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:adm="https://api.softwareavanzado.world/media/redcore/webservices/joomla/administrator.contact.1.0.0.wsdl">'
+              +"<soap:Header/>"
+              +"<soap:Body>"
+              +"<adm:readList>"
+              +"<limit>0</limit>"
+              +"<filterSearch>201602811</filterSearch>"
+              +"</adm:readList>"
+              +"</soap:Body>"
+```
+### Ingresar alumnos
+```
+data: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:adm="https://api.softwareavanzado.world/media/redcore/webservices/joomla/administrator.contact.1.0.0.wsdl">'
+              +"<soap:Header/>"
+              +"<soap:Body>"
+              +   "<adm:create>"
+              +      "<name>"+name+"</name>"
+              +   "</adm:create>"
+              +"</soap:Body>"
+              +"</soap:Envelope>",
+```

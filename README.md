@@ -1,6 +1,9 @@
 # SoftwareAvanzado
 Repositorio destinado a las tareas del curso de Software Avanzado, segundo semestre 2020
 # Tarea 2 - 201602811
+```
+Para esta Práctica utilizar siempre un navegador sin cors
+```
 # Parte 1
 ## Seguridad
 Se realizó un POST a la [API](https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&format=doc) donde en la data iba la información de las credenciales para poder obtener el token.

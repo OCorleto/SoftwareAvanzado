@@ -48,7 +48,7 @@ El método de listar alumnos tiene como parámetros:
 
 # Parte 2
 Se utilizó SOAPUI para poder obtener los XML necesarios para poder realizar la acción de crear y listar los alumnos de la [API](https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl)
-[!Screenshot](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea2/Practica2/img/SoapUI.PNG)
+![Screenshot](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea2/Practica2/img/SoapUI.PNG)
 Se realiza un POST con los XML necesarios para cada acción, en los POST también se envían en el header las credenciales para poder acceder por medio de autenticación básica:
 
 ```

@@ -1,7 +1,26 @@
 # SoftwareAvanzado
 Repositorio destinado a las tareas del curso de Software Avanzado, segundo semestre 2020
-# Tarea 1 - 201602811
-Aplicación realizada en Javascript, utilizando $ajax. El código se encuentra en el archivo [index.js.](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea1/index.js) .
+# Tarea 2 - 201602811
+# Parte 1
+## Seguridad
+Se realizó un POST a la [API](https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal&format=doc) donde en la data iba la información de las credenciales para poder obtener el token.
+```
+data : {
+            grant_type: "client_credentials",
+            client_id : id,
+            client_secret : secret
+        },
+```
+
+Y se obtiene el token de la data de ese POST
+```
+token = data.access_token
+```
+Luego se realiza la misma acción POST/GET realizados en la tarea 1 [index.js.](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea1/index.js), añadiendo un header con la autorización **Bearer** del nuevo token. Este proceso se repite en ambas funciones.
+```
+headers:{'Authorization' : 'Bearer '+token},
+```
+Aplicación realizada en Javascript, utilizando $ajax.
 La página web está desarrollada en **html** utilizando una plantilla css y js  (los archivos se encuentran dentro de las carpetas css, fonts y js).
 ![Screenshot](https://github.com/OCorleto/SoftwareAvanzado/blob/tarea1/img/pageprincipal.PNG)
 
@@ -26,3 +45,5 @@ El método de listar alumnos tiene como parámetros:
 - data : envía los datos que se quieren almacenar en formato JSON, en este caso solo se envía el nombre obtenido de la página web.
 - success : Confirma que se guardó correctamente el nombre.
 > Para poder utilizar el método POST, se debe utilizar un navegador libre de cors.
+
+

@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+const request = require('request');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
@@ -7,67 +8,135 @@ app.listen(3333, function () {
     console.log('Servicio ESB en puerto 3333!');
 });
 
-app.post('/pedidocliente/', (req, res) => {
+app.get('/pedidocliente/', (req, res) => {
     console.log('Cliente enviando pedido a restaurante')
-    //console.log(req.body)
-    //res.send('Pedido '+req.body.id +' de '+req.body.pedido+' enviado a restaurante')
+    const options = {
+        url: 'http://localhost:4000/pedido/',
+        json: true,
+        body: {
+            id: '1581',
+            pedido: 'Pollo papas'
+        }
+    };
+    
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        console.log(body);
+        return body
+    });
+    res.send('Cliente enviando pedido a restaurante')
 });
+
+
+
 
 app.get('/estadorest/', (req, res) => {
     console.log('Cliente consultando estado de pedido a restaurante')
-    /*var idpedido = req.query.id
-    estado = "EN PREPARACION" //aqui se consulta en la bd el estado
-    res.send('Pedido de cliente '+idpedido+' estado: '+estado)
-    console.log('Pedido de cliente '+idpedido+' \(restaurante\) en estado '+estado)*/
+    request
+    .get('http://localhost:4000/estadorest/?id=7777')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    res.send('Estado en restaurante')
 }); 
 
 app.get('/estadorep/', (req, res) => {
     console.log('Cliente consultando estado de pedido a repartidor')
-    /*var idpedido = req.query.id
-    estado = "EN CAMINO" //aqui se consulta en la bd el estado
-    res.send('Pedido de cliente '+idpedido+' estado: '+estado)
-    console.log('Pedido de cliente '+idpedido+' \(repartidor\) en estado '+estado)*/
+    request
+    .get('http://localhost:4000/estadorest/?id=7777')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    res.send('Estado een el repartidor')
 }); 
 app.get('/pedidorepartidor/', (req, res) => {
     console.log('Recibir pedido repartidor')
-    /*
-    var ext = req.query.ext
-    res.send('Pedido de cliente recibido, y enviando '+ext)
-    console.log('Pedido de cliente en camino '+ext)*/
+    request
+    .get('http://localhost:3000/estadorep/?id=2158')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    res.send('Peido recibido por repartidor')
 });
 
-app.post('/pedidorepartidorenvio/', (req, res) => {
+app.get('/pedidorepartidorenvio/', (req, res) => {
     console.log('Enviar Estado del pedido')
-    /*console.log(req.body)
-    res.send('Pedido '+req.body.id +' en estado '+req.body.estado)*/
+    const options = {
+        url: 'http://localhost:3000/pedido/',
+        json: true,
+        body: {
+            id: '1581',
+            estado: 'En camino'
+        }
+    };
+    
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        console.log(body);
+        return body
+    });
+    res.send('Pedido 1581 en estado en camino')
 });
 
 app.get('/entregado/', (req, res) => {
     console.log('Confirmar entrega')
-    /*
-    var idpedido = req.query.id
-    res.send('Pedido de cliente '+idpedido+' entregado')
-    console.log('Pedido de cliente entregado '+idpedido)*/
+    request
+    .get('http://localhost:3000/entregado/?id=15546')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    res.send('Confirmando entrega de pedido')
 }); 
 
 
 app.get('/pedidorestaurante/', (req, res) => {
-    /*var ext = req.query.ext
-    res.send('Pedido de cliente recibido, preparando '+ext)*/
     console.log('Recibiendo pedido del cliente')
+    request
+    .get('http://localhost:8000/pedido/?ext=1417')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    console.log('Pedido de cliente recibido ')
 });
 
 
-app.post('/pedido/', (req, res) => {
+app.get('/pedidorestauranteenvio/', (req, res) => {
     console.log('Confirmar pedido a repartidor')
-    /*console.log(req.body)
-    res.send('Pedido '+req.body.id +' de '+req.body.pedido+' enviado a repartidor')*/
+    console.log('Enviar Estado del pedido')
+    const options = {
+        url: 'http://localhost:8000/pedido/',
+        json: true,
+        body: {
+            id: '1581',
+            estado: 'En camino'
+        }
+    };
+    
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        console.log(body);
+        return body
+    });
+    res.send('Pedido 1581 ennviado al repartidor')
 });
 
 
 app.get('/estado/', (req, res) => {
-    /*var idpedido = req.query.id
-    estado = "PREPARANDO EN RESTAURANTE"//se consulta estado en BD
-    res.send('El estado de su pedido '+idpedido+ ' es: '+estado)*/
     console.log('Mostrando estado de pedido ')
+    console.log('Recibiendo pedido del cliente')
+    request
+    .get('http://localhost:8000/pedido/?id=1417')
+    .on('response', function(response) {
+        console.log(response.statusCode) // 200
+    })
+    res.send('Mostrando estado del pedido')
 });

@@ -24,19 +24,8 @@ def verdb():
                 total = total +1 
         return(str(total))
 
-@app.route("/ram",methods = ['GET'])
-def dataram():
-        archivo = open("/elements/procs/201602811_ram",'r')
-        contenido = archivo.read()
-        archivo.close()
-        return ({'contenido': contenido})
 
-@app.route("/cpu",methods = ['GET'])
-def datacpu():
-        archivo = open("/elements/procs/201602811_cpu",'r')
-        contenido = archivo.read()
-        archivo.close()
-        return ({'contenido': contenido})
+
 
 @app.route("/insertdb",methods = ['POST'])
 def insertar():

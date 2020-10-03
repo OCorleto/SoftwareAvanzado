@@ -34,3 +34,5 @@ El Dockerfile se encarga de crear y levantar el contenedor de la aplicación de 
 El archivo cuenta con 2 imagenes, la creada por el Dockerfile para la aplicación en python y la imagen de mongo para leventar la base de datos.
 
 Para poder guardar los elementos de la base de datos y mantenerlos en ella luego de que se apague el contenedor, se copian los archivos del contenedor mongo en una carpeta llamada mongo en la dirección `/home/ubuntu/mongo`.
+
+Asigna los puertos `80:8080` para la aplicación y el `27017:27017` para la base de datos.

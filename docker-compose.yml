@@ -1,0 +1,25 @@
+
+version: "3"
+
+services:
+ web:
+  container_name: appsopes1
+  restart: always
+  build: .
+  ports:
+   - "80:8080"
+  volumes:
+   - /proc/:/elements/procs/
+  links:
+   - mongo
+
+ mongo:
+  container_name: mongodb
+  image: mongo
+  ports:
+   - "27017:27017"
+  volumes:
+  -  /home/ubuntu/mongo:/data/db
+  logging:
+   driver: none
+

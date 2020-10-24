@@ -1,0 +1,29 @@
+{
+  "name": "sadevoopps",
+  "version": "1.0.0",
+  "description": "Repositorio destinado a las tareas del curso de Software Avanzado, segundo semestre 2020\r # Tarea 3 - 201602811\r Cada carpeta contiene el código de cada \"API\" destinada para cada servicio. Para poder poner en funcionamiento cada servicio, se coloca la carpeta en el servidor donde se desea correr y se inicia el archivo index.js de node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/oscarcorleto000/SADevoOpps.git"
+  },
+  "author": "OCorleto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/oscarcorleto000/SADevoOpps/issues"
+  },
+  "homepage": "https://gitlab.com/oscarcorleto000/SADevoOpps#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "jasmine-node": "^3.0.0",
+    "mocha": "^8.1.3"
+  }
+}
